@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- <script type = "text/javascript" src = "main.js"></script> -->
+    <script type = "module" src = "./main.js"></script>
+    <link rel = "stylesheet" href = "style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body onload = "timeLoop(); setupPeriods(); getUserData();">
+    <div style = "max-height: 10px">
+      <div id = "lunchSelectorContainer">
+        <p style = "margin-right: 10px; color: gold; margin-top: 23px; font-weight: bold;">1st Lunch</p>
+        <div id = "lunchSelectorSwitch" onclick = "toggleLunch()">
+          <div id = "lunchSelectorIcon" class = "untoggled">
+          </div>
+        </div>
+        <p style = "margin-left: 10px; color: gold; margin-top: 23px; font-weight: bold;">2nd Lunch</p>
+      </div>
+    </div>
+    <div style = "display: flex; align-items: center; height: 90%; width: 100%; display: flex;">
+      <!-- <button onclick = "getData()">test</button>
+      <button onclick = "sendData()">sending</button> -->
+      <div id = "timerBG">
+        <h1 style = "font-size: 50px; color: green;">Time Remaining</h1>
+        <h1 id = "timeRemainingText">
+          10:30
+        </h1>
+      </div>
+      <div id = "progressBarContainer">
+        <div id = "progressBar"></div>
+        <div id = "timer">
+          <p></p>
+        </div>
+        <div id = "periodContainer">
+          <div id = "period1" class = "periodMarker" style = "left: -10px">
+            <div width = "50px" height = "50px" style = "margin-left: -10px; margin-top: -10px">
+              <svg xmlns = "http://ww.w3.org/2000/svg" version = "1.1" width = "50px" height = "50px">
+                <circle cx = "25px" cy = "25px" r = "16" stroke-linecap = "round" class = "transistionCircle" id = "transition1"></circle>
+              </svg>
+            </div>
+            <div id = period1Complete class = "periodComplete"></div>
+          </div>
+          <div id = "period2" class = "periodMarker" style = "left: -49px">
+            <div width = "50px" height = "50px" style = "margin-left: -10px; margin-top: -10px">
+              <svg xmlns = "http://ww.w3.org/2000/svg" version = "1.1" width = "50px" height = "50px">
+                <circle cx = "25px" cy = "25px" r = "16" stroke-linecap = "round" class = "transistionCircle" id = "transition2"></circle>
+              </svg>
+            </div>
+            <div id = period2Complete class = "periodComplete"></div>
+          </div>
+          <div id = "period3" class = "periodMarker" style = "left: -88px">
+            <div width = "50px" height = "50px" style = "margin-left: -10px; margin-top: -10px">
+              <svg xmlns = "http://ww.w3.org/2000/svg" version = "1.1" width = "50px" height = "50px">
+                <circle cx = "25px" cy = "25px" r = "16" stroke-linecap = "round" class = "transistionCircle" id = "transition3"></circle>
+              </svg>
+            </div>
+            <div id = period3Complete class = "periodComplete"></div>
+          </div>
+          <div id = "period4" class = "periodMarker" style = "left: -127px">
+            <div width = "50px" height = "50px" style = "margin-left: -10px; margin-top: -10px">
+              <svg xmlns = "http://ww.w3.org/2000/svg" version = "1.1" width = "50px" height = "50px">
+                <circle cx = "25px" cy = "25px" r = "16" stroke-linecap = "round" class = "transistionCircle" id = "transition4"></circle>
+              </svg>
+            </div>
+            <div id = period4Complete class = "periodComplete"></div>
+          </div>
+          <div id = "period5" class = "periodMarker" style = "left: -167px">
+            <div width = "50px" height = "50px" style = "margin-left: -10px; margin-top: -10px">
+              <svg xmlns = "http://ww.w3.org/2000/svg" version = "1.1" width = "50px" height = "50px">
+                <circle cx = "25px" cy = "25px" r = "16" stroke-linecap = "round" class = "transistionCircle" id = "transition5"></circle>
+              </svg>
+            </div>
+            <div id = period5Complete class = "periodComplete"></div>
+          </div>
+          <div id = "period6" class = "periodMarker" style = "left: -206px">
+            <div width = "50px" height = "50px" style = "margin-left: -10px; margin-top: -10px">
+              <svg xmlns = "http://ww.w3.org/2000/svg" version = "1.1" width = "50px" height = "50px">
+                <circle cx = "25px" cy = "25px" r = "16" stroke-linecap = "round" class = "transistionCircle" id = "transition6"></circle>
+              </svg>
+            </div>
+            <div id = "period6Complete" class = "periodComplete"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

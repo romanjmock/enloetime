@@ -1,0 +1,139 @@
+#timeRemainingText {
+  color: green;
+  /* opacity: 1; */
+  font-size: 100px;
+  margin-top: 0px;
+}
+#timerBG {
+  background-color: rgba(0, 0, 0, .5);
+  width: 700px;
+  height: 300px;
+  border-radius: 30px;
+  text-align: center;
+  display: grid; 
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 10% 0 10%;
+}
+#progressBar {
+  width: 100%;
+  height: 45%;
+  background-color: green;
+  border-radius: 15px
+}
+#progressBarContainer {
+  width: 20px;
+  height: 90%;
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 15px;
+  margin-right: 10%;
+  margin-left: 10%;
+  justify-content: center;
+}
+#periodContainer {
+  position: relative;
+  height: 100%;
+  display: flex;
+  margin-top: -50px;
+}
+#timer {
+  width: 100px;
+  height: 50px;
+  background-color: green;
+  margin-left: -120px;
+  margin-top: -25px;
+  border-radius: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+#lunchSelectorContainer {
+  height: 65px;
+  width: 280px;
+  background-color: rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+}
+#lunchSelectorSwitch {
+  width: 90px;
+  height: 45px;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 23px;
+  transition-duration: .3s;
+}
+#lunchSelectorSwitch:hover {
+  width: 99px;
+  height: 50px;
+  border-radius: 28px;
+  margin-top: 8px;
+  transition-duration: .3s;
+}
+#lunchSelectorIcon.untoggled {
+  background-color: green;
+  width: 50%;
+  height: 100%;
+  border-radius: 50%;
+  margin-left: 50%;
+  animation-name: untoggle;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+}
+#lunchSelectorIcon.toggled {
+  background-color: green;
+  width: 50%;
+  height: 100%;
+  border-radius: 50%;
+  margin-left: 50%;
+  animation-name: toggle;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+}
+@keyframes toggle {
+  from {margin-left: 0%}
+  to {margin-left: 50%}
+}
+@keyframes untoggle {
+  from {margin-left: 50%}
+  to {margin-left: 0%}
+}
+.transistionCircle {
+  fill: none;
+  stroke: green;
+  stroke-width: 8px;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+.periodMarker {
+  min-width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, .5);
+  position: relative;
+  left: -10px;
+  border: 5px solid rgba(0, 0, 0, 0);
+  border-radius: 50%;
+}
+.periodComplete {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: grey;
+  position: relative;
+  left: 0px;
+  top: -44px;
+}
+body {
+  background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("https://imagescdn.homes.com/i2/zOK22YBugRgn0ZU5LfK0ZV8ebGJbWWQRcYKkk86aMJE/111/enloe-high-raleigh-nc-2-schoolphoto.jpg?p=1");
+  /* background-image: url("https://imagescdn.homes.com/i2/zOK22YBugRgn0ZU5LfK0ZV8ebGJbWWQRcYKkk86aMJE/111/enloe-high-raleigh-nc-2-schoolphoto.jpg?p=1"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+html {
+  height: 100%;
+}
