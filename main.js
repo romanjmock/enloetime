@@ -1,6 +1,6 @@
 //const { URL, URLSearchParams } = require('url');
 
-console.log("test");
+//console.log("testing to prove that this script is recognized");
 const aLunch = {
   "1Start": toSeconds(7, 25, 0),
   "1End": toSeconds(8, 52, 0),
@@ -26,6 +26,12 @@ const bLunch = {
   "5End": toSeconds(14, 20, 0)
 }
 var currentSchedule = aLunch
+
+timeLoop();
+setupPeriods();
+getUserData();
+document.getElementById("lunchSelectorSwitch").addEventListener("click", toggleLunch);
+
 function timeLoop() {
   //console.log("setting the time");
   var timer = document.getElementById("timer");
