@@ -115,7 +115,7 @@ function timeLoop() {
   if (currentSeconds > secondPeriod && currentSeconds < currentSchedule["2Start"]) {
     var percentage = (currentSeconds - secondPeriod) / (currentSchedule["2Start"] - secondPeriod) * 100;
     transition2.style.strokeDasharray = "100 " + (100 - percentage).toString();
-    console.log("in transition time between 1 and 2, percentage is " + percentage + ", |" + window.getComputedStyle(transition1).strokeDashArray + "|");
+    //console.log("in transition time between 1 and 2, percentage is " + percentage + ", |" + window.getComputedStyle(transition1).strokeDashArray + "|");
     timeRemaining = currentSchedule["2Start"] - currentSeconds;
   }
   if (currentSeconds > secondPeriod) {
@@ -129,7 +129,7 @@ function timeLoop() {
   if (currentSeconds > thirdPeriod && currentSeconds < currentSchedule["3Start"]) {
     var percentage = (currentSeconds - thirdPeriod) / (currentSchedule["3Start"] - thirdPeriod) * 100;
     transition3.style.strokeDasharray = "100 " + (100 - percentage).toString();
-    console.log("in transition time between periods, percentage is " + percentage);
+    //console.log("in transition time between periods, percentage is " + percentage);
     timeRemaining = currentSchedule["3Start"] - currentSeconds;
   }
   if (currentSeconds > thirdPeriod) {
@@ -143,7 +143,7 @@ function timeLoop() {
   if (currentSeconds > fourthPeriod && currentSeconds < currentSchedule["4Start"]) {
     var percentage = (currentSeconds - fourthPeriod) / (currentSchedule["4Start"] - fourthPeriod) * 100;
     transition4.style.strokeDasharray = "100 " + (100 - percentage).toString();
-    console.log("in transition time between 1 and 2, percentage is " + percentage + ", |" + window.getComputedStyle(transition1).strokeDashoffset + "|");
+    //console.log("in transition time between 1 and 2, percentage is " + percentage + ", |" + window.getComputedStyle(transition1).strokeDashoffset + "|");
     timeRemaining = currentSchedule["4Start"] - currentSeconds;
 
   }
@@ -158,7 +158,7 @@ function timeLoop() {
   if (currentSeconds > fifthPeriod && currentSeconds < currentSchedule["5Start"]) {
     var percentage = (currentSeconds - fifthPeriod) / (currentSchedule["5Start"] - fifthPeriod) * 100;
     transition5.style.strokeDasharray = "100 " + (100 - percentage).toString();
-    console.log("in transition time between 1 and 2, percentage is " + percentage + ", |" + window.getComputedStyle(transition1).strokeDashoffset + "|");
+    //console.log("in transition time between 1 and 2, percentage is " + percentage + ", |" + window.getComputedStyle(transition1).strokeDashoffset + "|");
     timeRemaining = currentSchedule["5Start"] - currentSeconds;
   }
   if (currentSeconds > fifthPeriod) {
@@ -203,28 +203,34 @@ function setupPeriods() {
   // var period4Pos = ((toSeconds(12, 8, 0) - toSeconds(7, 25, 0))) / totalSeconds * 100;
   // var period5Pos = 100;
 
-  console.log("current schedule " + currentSchedule["1End"] + ", " + currentSchedule["1Start"]);
-  console.log(toSeconds(8, 52, 0) + ", " + toSeconds(7, 25, 0));
+  //console.log("current schedule " + currentSchedule["1End"] + ", " + currentSchedule["1Start"]);
+  //console.log(toSeconds(8, 52, 0) + ", " + toSeconds(7, 25, 0));
 
-  var period1Pos = ((currentSchedule["1Start"] - currentSchedule["1Start"])) / totalSeconds * 100;
-  var period2Pos = ((currentSchedule["1End"] - toSeconds(7, 25, 0))) / totalSeconds * 100;
-  var period3Pos = ((currentSchedule["2End"] - toSeconds(7, 25, 0))) / totalSeconds * 100;
-  var period4Pos = ((currentSchedule["3End"] - toSeconds(7, 25, 0))) / totalSeconds * 100;
-  var period5Pos = ((currentSchedule["4End"] - toSeconds(7, 25, 0))) / totalSeconds * 100;
-  var period6Pos = "100";
+  var screenWidth = window.screen.width;
+  var barHeight = document.getElementById("periodContainer").offsetHeight;
+  console.log("bar height is " + barHeight);
+
+  var period1Pos = ((currentSchedule["1Start"] - currentSchedule["1Start"])) / totalSeconds;
+  var period2Pos = ((currentSchedule["1End"] - toSeconds(7, 25, 0))) / totalSeconds * barHeight - period1.offsetHeight * 1;
+  var period3Pos = ((currentSchedule["2End"] - toSeconds(7, 25, 0))) / totalSeconds * barHeight - period1.offsetHeight * 2;
+  var period4Pos = ((currentSchedule["3End"] - toSeconds(7, 25, 0))) / totalSeconds * barHeight - period1.offsetHeight * 3;
+  var period5Pos = ((currentSchedule["4End"] - toSeconds(7, 25, 0))) / totalSeconds * barHeight - period1.offsetHeight * 4;
+  var period6Pos = barHeight - period1.offsetHeight * 5;
+  //((screenWidth - period1.offsetHeight) / screenWidth) * 400;
 
 
   console.log("period 1 position is " + period1Pos);
+  console.log("period 1 height is " + period1.offsetHeight + " offset is " + ((screenWidth - period1.offsetHeight) / screenWidth));
 
-  period1.style.top = period1Pos.toString() + "%";
-  period2.style.top = period2Pos.toString() + "%";
-  period3.style.top = period3Pos.toString() + "%";
+  period1.style.top = period1Pos.toString() + "px";
+  period2.style.top = period2Pos.toString() + "px";
+  period3.style.top = period3Pos.toString() + "px";
   console.log("period3 is " + period1.style.top.toString() + " position is " + period3Pos);
-  period4.style.top = period4Pos.toString() + "%";
-  period5.style.top = period5Pos.toString() + "%";
-  period6.style.top = period6Pos.toString() + "%";
+  period4.style.top = period4Pos.toString() + "px";
+  period5.style.top = period5Pos.toString() + "px";
+  period6.style.top = period6Pos.toString() + "px";
 
-  console.log("period 5 position is " + period5Pos.toString());
+  //console.log("period 5 position is " + period5Pos.toString());
 
   document.getElementById("transition1").style.strokeDasharray = "100 0";
   //document.getElementById("transition2").style.strokeDasharray = "100 0";
@@ -235,10 +241,10 @@ function setupPeriods() {
 }
 
 function getUserData() {
-  console.log("document cookies " + document.cookie);
+  //console.log("document cookies " + document.cookie);
   var aDayLunch = getCookie("aDayLunch");
   var bDayLunch = getCookie("bDayLunch");
-  console.log("lunches are " + aDayLunch, bDayLunch + "|");
+  //console.log("lunches are " + aDayLunch, bDayLunch + "|");
   if (aDayLunch == "") {
     setCookie("aDayLunch", "1", 180);
   }
@@ -251,7 +257,7 @@ function getUserData() {
 }
 
 function toggleLunch() {
-  console.log("lunch clicked");
+  //console.log("lunch clicked");
   var icon = document.getElementById("lunchSelectorIcon");
   var currentDay = "aDayLunch";
   if (currentSchedule == aLunch) {
@@ -259,13 +265,13 @@ function toggleLunch() {
     icon.classList.remove("untoggled");
     icon.classList.add("toggled");
     setCookie(currentDay, "2", "365");
-    console.log(icon.classList);
+    //console.log(icon.classList);
   } else if (currentSchedule == bLunch) {
     currentSchedule = aLunch;
     icon.classList.remove("toggled");
     icon.classList.add("untoggled");
     setCookie(currentDay, "1", "365");
-    console.log("untoggling");
+    //console.log("untoggling");
   }
   setupPeriods();
 }

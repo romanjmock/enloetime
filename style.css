@@ -33,8 +33,9 @@
 #periodContainer {
   position: relative;
   height: 100%;
-  display: flex;
+  display: block;
   margin-top: -50px;
+  left: -47%;
 }
 #timer {
   width: 100px;
