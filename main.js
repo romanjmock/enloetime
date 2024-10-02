@@ -25,11 +25,12 @@ const bLunch = {
   "5Start": toSeconds(12, 53, 0),
   "5End": toSeconds(14, 20, 0)
 }
-var currentSchedule = aLunch
+var currentSchedule = aLunch;
+var dayType = "";
 
 timeLoop();
 setupPeriods();
-getUserData();
+getData();
 document.getElementById("lunchSelectorSwitch").addEventListener("click", toggleLunch);
 
 function timeLoop() {
@@ -209,7 +210,7 @@ function setupPeriods() {
 
   var screenWidth = window.screen.width;
   var barHeight = document.getElementById("periodContainer").offsetHeight;
-  console.log("bar height is " + barHeight);
+  //console.log("bar height is " + barHeight);
 
   var period1Pos = ((currentSchedule["1Start"] - currentSchedule["1Start"])) / totalSeconds;
   var period2Pos = ((currentSchedule["1End"] - toSeconds(7, 25, 0))) / totalSeconds * barHeight - period1.offsetHeight * 1;
@@ -220,13 +221,13 @@ function setupPeriods() {
   //((screenWidth - period1.offsetHeight) / screenWidth) * 400;
 
 
-  console.log("period 1 position is " + period1Pos);
-  console.log("period 1 height is " + period1.offsetHeight + " offset is " + ((screenWidth - period1.offsetHeight) / screenWidth));
+  //console.log("period 1 position is " + period1Pos);
+  //console.log("period 1 height is " + period1.offsetHeight + " offset is " + ((screenWidth - period1.offsetHeight) / screenWidth));
 
   period1.style.top = period1Pos.toString() + "px";
   period2.style.top = period2Pos.toString() + "px";
   period3.style.top = period3Pos.toString() + "px";
-  console.log("period3 is " + period1.style.top.toString() + " position is " + period3Pos);
+  //console.log("period3 is " + period1.style.top.toString() + " position is " + period3Pos);
   period4.style.top = period4Pos.toString() + "px";
   period5.style.top = period5Pos.toString() + "px";
   period6.style.top = period6Pos.toString() + "px";
@@ -245,14 +246,19 @@ function getUserData() {
   //console.log("document cookies " + document.cookie);
   var aDayLunch = getCookie("aDayLunch");
   var bDayLunch = getCookie("bDayLunch");
-  //console.log("lunches are " + aDayLunch, bDayLunch + "|");
+  var icon = document.getElementById("lunchSelectorIcon");
+  console.log("lunches are " + aDayLunch, bDayLunch + "|");
   if (aDayLunch == "") {
     setCookie("aDayLunch", "1", 180);
   }
   if (bDayLunch == "") {
     setCookie("bDayLunch", "1", 180);
   }
-  if (aDayLunch == "2") {
+  console.log("the values are " + aDayLunch + ", and " + dayType);
+  if (aDayLunch == "2" && dayType == "a") {
+    toggleLunch();
+  }
+  if (bDayLunch == "2" && dayType == "b") {
     toggleLunch();
   }
 }
@@ -260,7 +266,9 @@ function getUserData() {
 function toggleLunch() {
   //console.log("lunch clicked");
   var icon = document.getElementById("lunchSelectorIcon");
-  var currentDay = "aDayLunch";
+  //var currentDay = "aDayLunch";
+  var currentDay = dayType + "DayLunch"
+  console.log("current lunch day is " + currentDay);
   if (currentSchedule == aLunch) {
     currentSchedule = bLunch;
     icon.classList.remove("untoggled");
@@ -279,15 +287,25 @@ function toggleLunch() {
 
 function getData() {
   var url = new URL("http://localhost:4001/");
+  var daysOffCount = 0;
+  var currentDate = new Date();
+  //var currentDate = new Date("10/4/2024");
+  var currentDateString = currentDate.toLocaleDateString();
+
   var params = {
-    requestType: "dayType",
-    date: "25-10-2024"
+    requestType: "dayTypeAB",
+    currentDate: currentDateString,
   }
   url.search = new URLSearchParams(params).toString();
   fetch(url).then((response) => {
     return response.json();
   }).then((response) => {
     console.log(response);
+    dayType = response.dayType;
+    getUserData();
+  }).catch((error) => {
+    dayType = "a";
+    getUserData();
   });
 }
 
