@@ -101,8 +101,9 @@
 }
 .transistionCircle {
   fill: none;
+  /* stroke: green; */
   stroke: green;
-  stroke-width: 8px;
+  stroke-width: 9px;
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
 }
@@ -130,6 +131,7 @@ body {
   /* background-image: url("https://imagescdn.homes.com/i2/zOK22YBugRgn0ZU5LfK0ZV8ebGJbWWQRcYKkk86aMJE/111/enloe-high-raleigh-nc-2-schoolphoto.jpg?p=1"); */
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center top;
   display: inline-block;
   align-items: center;
   height: 100%;
@@ -137,4 +139,5 @@ body {
 }
 html {
   height: 100%;
+  width: 100%;
 }

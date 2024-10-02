@@ -38,8 +38,9 @@ function timeLoop() {
   var progressBar = document.getElementById("progressBar");
   var periodContainer = document.getElementById("periodContainer");
   var currentTime = new Date();
-  //currentTime.setHours(8);
-  //currentTime.setMinutes(35);
+  //currentTime.setHours(10);
+  //currentTime.setMinutes(15);
+  //currentTime.setSeconds(0);
   //currentTime.setHours(currentTime.getHours() - 14);
   //currentTime.setMinutes(currentTime.getMinutes() - 26);
   //currentTime.setSeconds(currentTime.getSeconds() - 40);
@@ -107,18 +108,18 @@ function timeLoop() {
   var fourthPeriod = currentSchedule["3End"];
   var fifthPeriod = currentSchedule["4End"];
   var sixthPeriod = currentSchedule["5End"];
-  if (currentSeconds > firstPeriod) {
+  if (currentSeconds >= firstPeriod) {
     period1Marker.style.backgroundColor = "green";
     timeRemaining = secondPeriod - currentSeconds;
     //console.log("in first period");
   }
-  if (currentSeconds > secondPeriod && currentSeconds < currentSchedule["2Start"]) {
+  if (currentSeconds > secondPeriod && currentSeconds <= currentSchedule["2Start"]) {
     var percentage = (currentSeconds - secondPeriod) / (currentSchedule["2Start"] - secondPeriod) * 100;
     transition2.style.strokeDasharray = "100 " + (100 - percentage).toString();
     //console.log("in transition time between 1 and 2, percentage is " + percentage + ", |" + window.getComputedStyle(transition1).strokeDashArray + "|");
     timeRemaining = currentSchedule["2Start"] - currentSeconds;
   }
-  if (currentSeconds > secondPeriod) {
+  if (currentSeconds >= secondPeriod) {
     period2Marker.style.backgroundColor = "green";
     if (currentSeconds > currentSchedule["2Start"]) {
       timeRemaining = thirdPeriod - currentSeconds;
@@ -126,13 +127,13 @@ function timeLoop() {
     }
     //console.log("in second period");
   }
-  if (currentSeconds > thirdPeriod && currentSeconds < currentSchedule["3Start"]) {
+  if (currentSeconds > thirdPeriod && currentSeconds <= currentSchedule["3Start"]) {
     var percentage = (currentSeconds - thirdPeriod) / (currentSchedule["3Start"] - thirdPeriod) * 100;
     transition3.style.strokeDasharray = "100 " + (100 - percentage).toString();
     //console.log("in transition time between periods, percentage is " + percentage);
     timeRemaining = currentSchedule["3Start"] - currentSeconds;
   }
-  if (currentSeconds > thirdPeriod) {
+  if (currentSeconds >= thirdPeriod) {
     period3Marker.style.backgroundColor = "green";
     if (currentSeconds > currentSchedule["3Start"]) {
       timeRemaining = fourthPeriod - currentSeconds;
@@ -140,14 +141,14 @@ function timeLoop() {
     }
     //console.log("in third period");
   }
-  if (currentSeconds > fourthPeriod && currentSeconds < currentSchedule["4Start"]) {
+  if (currentSeconds > fourthPeriod && currentSeconds <= currentSchedule["4Start"]) {
     var percentage = (currentSeconds - fourthPeriod) / (currentSchedule["4Start"] - fourthPeriod) * 100;
     transition4.style.strokeDasharray = "100 " + (100 - percentage).toString();
     //console.log("in transition time between 1 and 2, percentage is " + percentage + ", |" + window.getComputedStyle(transition1).strokeDashoffset + "|");
     timeRemaining = currentSchedule["4Start"] - currentSeconds;
 
   }
-  if (currentSeconds > fourthPeriod) {
+  if (currentSeconds >= fourthPeriod) {
     period4Marker.style.backgroundColor = "green";
     if (currentSeconds > currentSchedule["4Start"]) {
       timeRemaining = fifthPeriod - currentSeconds;
@@ -155,13 +156,13 @@ function timeLoop() {
     }
     //console.log("in fourth period " + currentSeconds + ", " + fourthPeriod);
   }
-  if (currentSeconds > fifthPeriod && currentSeconds < currentSchedule["5Start"]) {
+  if (currentSeconds > fifthPeriod && currentSeconds <= currentSchedule["5Start"]) {
     var percentage = (currentSeconds - fifthPeriod) / (currentSchedule["5Start"] - fifthPeriod) * 100;
     transition5.style.strokeDasharray = "100 " + (100 - percentage).toString();
     //console.log("in transition time between 1 and 2, percentage is " + percentage + ", |" + window.getComputedStyle(transition1).strokeDashoffset + "|");
     timeRemaining = currentSchedule["5Start"] - currentSeconds;
   }
-  if (currentSeconds > fifthPeriod) {
+  if (currentSeconds >= fifthPeriod) {
     period5Marker.style.backgroundColor = "green";
     if (currentSeconds > currentSchedule["5Start"]) {
       timeRemaining = sixthPeriod - currentSeconds;
