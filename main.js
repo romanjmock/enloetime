@@ -32,6 +32,7 @@ timeLoop();
 setupPeriods();
 getData();
 document.getElementById("lunchSelectorSwitch").addEventListener("click", toggleLunch);
+document.getElementById("menuButton").addEventListener("click", toggleMenu);
 
 function timeLoop() {
   //console.log("setting the time");
@@ -319,6 +320,26 @@ function sendData() {
       "content-type": "application/json charset=UTF-8"
     }
   });
+}
+
+function toggleMenu() {
+  var menu = document.getElementById("menu");
+  var menuArrow = document.getElementById("menuArrowIcon");
+  var menuButton = document.getElementById("menuButton");
+  if (menu.classList.contains("hidden")) {
+    console.log("menu being shown");
+    menu.classList.remove("hidden");
+    menu.classList.add("shown");
+    menuArrow.innerHTML = "keyboard_double_arrow_up";
+    menuArrow.classList.add("toggled");
+    menuButton.style.marginBottom = "20px";
+  } else {
+    menu.classList.remove("shown");
+    menu.classList.add("hidden");
+    menuArrow.innerHTML = "keyboard_double_arrow_down";
+    menuArrow.classList.remove("toggled");
+    menuButton.style.marginBottom = "70px";
+  }
 }
 
 function toSeconds(hour, minute, seconds) {
