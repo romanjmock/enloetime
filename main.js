@@ -33,6 +33,7 @@ setupPeriods();
 getData();
 document.getElementById("lunchSelectorSwitch").addEventListener("click", toggleLunch);
 document.getElementById("menuButton").addEventListener("click", toggleMenu);
+document.getElementById("settingsButton").addEventListener("click", toggleSettings);
 
 function timeLoop() {
   //console.log("setting the time");
@@ -340,6 +341,15 @@ function toggleMenu() {
     menuArrow.classList.remove("toggled");
     menuButton.style.marginBottom = "70px";
   }
+}
+
+function toggleSettings() {
+  var dimmer = document.getElementById("dimmer");
+  var settings = document.getElementById("settings");
+  dimmer.classList.remove("hidden");
+  dimmer.classList.add("shown");
+  settings.classList.remove("hidden");
+  settings.classList.add("shown");
 }
 
 function toSeconds(hour, minute, seconds) {
