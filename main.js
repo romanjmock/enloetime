@@ -63,6 +63,7 @@ document.getElementById("dimmer").addEventListener("click", removePanels);
 document.getElementById("settings").addEventListener("click", doNothing);
 document.getElementById("info").addEventListener("click", doNothing);
 document.getElementById("infoButton").addEventListener("click", toggleInfo);
+window.onresize = setupPeriods;
 
 function timeLoop() {
   //console.log("setting the time");
