@@ -29,7 +29,7 @@
   margin-right: 10%;
   margin-left: 10%;
   justify-content: center;
-  margin-top: -10%;
+  margin-top: -250px;
 }
 #periodContainer {
   position: relative;
@@ -305,6 +305,20 @@
     transform: translateX(500%) rotateZ(180deg);
     animation-timing-function: linear;
   }
+}
+#homeroomWarning {
+  width: 50%;
+  height: 10%;
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 25px;
+  margin-left: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 200%;
+  color: gold;
+  margin-top: -30px;
+  margin-bottom: 5%;
 }
 .transistionCircle {
   fill: none;
