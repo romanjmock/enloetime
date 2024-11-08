@@ -25,7 +25,32 @@ const bLunch = {
   "5Start": toSeconds(12, 53, 0),
   "5End": toSeconds(14, 20, 0)
 }
-var currentSchedule = aLunch;
+const aLunchHomeroom = {
+  "1Start": toSeconds(7, 25, 0),
+  "1End": toSeconds(8, 50, 0),
+  "2Start": toSeconds(9, 14, 0),
+  "2End": toSeconds(10, 39, 0),
+  "3Start": toSeconds(10, 45, 0),
+  "3End": toSeconds(11, 20, 0),
+  "4Start": toSeconds(11, 24, 0),
+  "4End": toSeconds(12, 49, 0),
+  "5Start": toSeconds(12, 55, 0),
+  "5End": toSeconds(14, 20, 0)
+}
+const bLunchHomeroom = {
+  "1Start": toSeconds(7, 25, 0),
+  "1End": toSeconds(8, 50, 0),
+  "2Start": toSeconds(9, 14, 0),
+  "2End": toSeconds(10, 39, 0),
+  "3Start": toSeconds(10, 45, 0),
+  "3End": toSeconds(12, 10, 0),
+  "4Start": toSeconds(12, 14, 0),
+  "4End": toSeconds(12, 49, 0),
+  "5Start": toSeconds(12, 55, 0),
+  "5End": toSeconds(14, 20, 0)
+}
+//var currentSchedule = aLunch;
+var currentSchedule = aLunchHomeroom;
 var dayType = "";
 
 timeLoop();
@@ -34,6 +59,10 @@ getData();
 document.getElementById("lunchSelectorSwitch").addEventListener("click", toggleLunch);
 document.getElementById("menuButton").addEventListener("click", toggleMenu);
 document.getElementById("settingsButton").addEventListener("click", toggleSettings);
+document.getElementById("dimmer").addEventListener("click", removePanels);
+document.getElementById("settings").addEventListener("click", doNothing);
+document.getElementById("info").addEventListener("click", doNothing);
+document.getElementById("infoButton").addEventListener("click", toggleInfo);
 
 function timeLoop() {
   //console.log("setting the time");
@@ -284,7 +313,30 @@ function toggleLunch() {
     setCookie(currentDay, "1", "365");
     //console.log("untoggling");
   }
+  if (currentSchedule == aLunchHomeroom) {
+    currentSchedule = bLunchHomeroom;
+    icon.classList.remove("untoggled");
+    icon.classList.add("toggled");
+    setCookie(currentDay, "2", "365");
+    //console.log(icon.classList);
+  } else if (currentSchedule == bLunchHomeroom) {
+    currentSchedule = aLunchHomeroom;
+    icon.classList.remove("toggled");
+    icon.classList.add("untoggled");
+    setCookie(currentDay, "1", "365");
+    //console.log("untoggling");
+  }
   setupPeriods();
+}
+function removePanels(event) {
+  console.log(event.target);
+  var settings = document.getElementById("settings");
+  for (var child of dimmer.children) {
+    child.classList.remove("shown");
+    child.classList.add("hidden");
+  }
+  dimmer.classList.remove("shown");
+  dimmer.classList.add("hidden");
 }
 
 function getData() {
@@ -343,13 +395,32 @@ function toggleMenu() {
   }
 }
 
-function toggleSettings() {
+function toggleSettings(event, element) {
+  if (event.target != element) {
+    console.log("error");
+  }
   var dimmer = document.getElementById("dimmer");
   var settings = document.getElementById("settings");
   dimmer.classList.remove("hidden");
   dimmer.classList.add("shown");
   settings.classList.remove("hidden");
   settings.classList.add("shown");
+}
+function toggleInfo(event, element) {
+  if (event.target != element) {
+    console.log("error");
+  }
+  var dimmer = document.getElementById("dimmer");
+  var info = document.getElementById("info");
+  dimmer.classList.remove("hidden");
+  dimmer.classList.add("shown");
+  info.classList.remove("hidden");
+  info.classList.add("shown");
+}
+
+function doNothing(event) {
+  console.log("console was clicked");
+  event.stopPropagation();
 }
 
 function toSeconds(hour, minute, seconds) {
