@@ -49,8 +49,8 @@ const bLunchHomeroom = {
   "5Start": toSeconds(12, 55, 0),
   "5End": toSeconds(14, 20, 0)
 }
-//var currentSchedule = aLunch;
-var currentSchedule = aLunchHomeroom;
+var currentSchedule = aLunch;
+//var currentSchedule = aLunchHomeroom;
 var dayType = "";
 
 timeLoop();
